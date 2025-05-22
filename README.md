@@ -57,9 +57,7 @@ Create a postgres db with the db name set in env file
 
 ## Running the Application
 
-Running the Application
-
-```BASH
+```bash
 npm run start:dev
 ```
 
