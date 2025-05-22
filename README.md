@@ -1,98 +1,125 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# Multi-Vendor Bid Tracking System
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+A Nest.js application for tracking multiple contractors and vendors bidding on projects, managing vendor relationships, assigning estimators, and comparing bids.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Features
 
-## Description
+- Project Management: Create and track construction projects
+- Contractor Management: Manage contractors and their bids
+- Vendor Tracking: Associate multiple vendors with each bid
+- Bid Comparison: Compare multiple bids for the same project
+- Estimator Assignment: Assign estimators to evaluate bids
+- Communication Tracking: Track all communications with contractors
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## Tech Stack
 
-## Project setup
+- **Backend:** Nest.js + TypeScript
+- **Database:** PostgreSQL
+- **ORM:** TypeORM
 
-```bash
-$ npm install
-```
+## Prerequisites
 
-## Compile and run the project
+- Node.js (v16+)
+- npm
+- PostgreSQL
+
+## Installation
+
+### 1. Clone the repository
 
 ```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+git clone https://github.com/ezio-7/ezio-7-bid-tracking-system.git
+cd bid-tracking-system
 ```
 
-## Run tests
+### 2. Install dependencies
 
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+npm install
 ```
 
-## Deployment
+### 3 .Configure environment variables
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+Create a `.env` file in the root directory with the following content:
 
 ```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
+DATABASE_HOST=localhost
+DATABASE_PORT=5432
+DATABASE_USERNAME=postgres
+DATABASE_PASSWORD=yourpassword
+DATABASE_NAME=bidtracking
+PORT=3000
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+### 4 .Create a PostgreSQL database
 
-## Resources
+Create a postgres db with the db name set in env file
 
-Check out a few resources that may come in handy when working with NestJS:
+## Running the Application
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+Running the Application
 
-## Support
+```BASH
+npm run start:dev
+```
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+## API Endpoints
 
-## Stay in touch
+### Projects
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+- `GET /api/projects` - Get all projects
+- `GET /api/projects/:id` - Get a specific project
+- `POST /api/projects` - Create a new project
+- `PATCH /api/projects/:id` - Update a project
+- `DELETE /api/projects/:id` - Delete a project
+- `GET /api/projects/:id/bids` - Get all bids for a project
 
-## License
+### Contractors
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+- `GET /api/contractors` - Get all contractors
+- `GET /api/contractors/:id` - Get a specific contractor
+- `POST /api/contractors` - Create a new contractor
+- `PATCH /api/contractors/:id` - Update a contractor
+- `DELETE /api/contractors/:id` - Delete a contractor
+- `GET /api/contractors/:id/bids` - Get all bids from a contractor
+- `GET /api/contractors/:id/communications` - Get all communications with a contractor
+
+### Vendors
+
+- `GET /api/vendors` - Get all vendors
+- `GET /api/vendors/:id` - Get a specific vendor
+- `POST /api/vendors` - Create a new vendor
+- `PATCH /api/vendors/:id` - Update a vendor
+- `DELETE /api/vendors/:id` - Delete a vendor
+- `GET /api/vendors/:id/bids` - Get all bids associated with a vendor
+
+### Bids
+
+- `GET /api/bids` - Get all bids
+- `GET /api/bids/:id` - Get a specific bid
+- `POST /api/bids` - Create a new bid
+- `PATCH /api/bids/:id` - Update a bid
+- `DELETE /api/bids/:id` - Delete a bid
+- `POST /api/bids/:id/assign-estimator` - Assign an estimator to a bid
+- `POST /api/bids/:id/add-vendor` - Add a vendor to a bid
+- `DELETE /api/bids/:bidId/vendors/:vendorId` - Remove a vendor from a bid
+- `GET /api/bids/compare/project/:projectId` - Compare all bids for a project
+
+### Estimators
+
+- `GET /api/estimators` - Get all estimators
+- `GET /api/estimators/:id` - Get a specific estimator
+- `POST /api/estimators` - Create a new estimator
+- `PATCH /api/estimators/:id` - Update an estimator
+- `DELETE /api/estimators/:id` - Delete an estimator
+- `GET /api/estimators/:id/assigned-bids` - Get all bids assigned to an estimator
+
+### Communications
+
+- `GET /api/communications` - Get all communications
+- `GET /api/communications/:id` - Get a specific communication
+- `POST /api/communications` - Create a new communication
+- `DELETE /api/communications/:id` - Delete a communication
+- `GET /api/communications/contractor/:contractorId` - Get all communications with a contractor
+- `GET /api/communications/project/:projectId` - Get all communications for a project
+- `GET /api/communications/bid/:bidId` - Get all communications related to a bid
