@@ -1,4 +1,5 @@
-// src/vendors/vendors.service.ts
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
@@ -20,19 +21,23 @@ export class VendorsService {
 
   findAll(query) {
     const queryBuilder = this.vendorsRepository.createQueryBuilder('vendor');
-    
+
     if (query.isActive !== undefined) {
-      queryBuilder.andWhere('vendor.isActive = :isActive', { isActive: query.isActive === 'true' });
+      queryBuilder.andWhere('vendor.isActive = :isActive', {
+        isActive: query.isActive === 'true',
+      });
     }
-    
+
     if (query.serviceType) {
-      queryBuilder.andWhere('vendor.serviceType = :serviceType', { serviceType: query.serviceType });
+      queryBuilder.andWhere('vendor.serviceType = :serviceType', {
+        serviceType: query.serviceType,
+      });
     }
-    
+
     if (query.role) {
       queryBuilder.andWhere('vendor.role = :role', { role: query.role });
     }
-    
+
     return queryBuilder.getMany();
   }
 
@@ -60,11 +65,11 @@ export class VendorsService {
       where: { id },
       relations: ['bids', 'bids.project', 'bids.contractor'],
     });
-    
+
     if (!vendor) {
       throw new NotFoundException(`Vendor with ID ${id} not found`);
     }
-    
+
     return vendor.bids;
   }
 }

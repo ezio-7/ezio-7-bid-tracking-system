@@ -1,5 +1,11 @@
-// src/estimators/entities/estimator.entity.ts
-import { Entity, Column, PrimaryGeneratedColumn, OneToMany, CreateDateColumn, UpdateDateColumn } from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  OneToMany,
+  CreateDateColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 import { Bid } from '../../bids/entities/bid.entity';
 
 @Entity()
@@ -22,7 +28,7 @@ export class Estimator {
   @Column({ nullable: true })
   specialization: string;
 
-  @OneToMany(() => Bid, bid => bid.estimator)
+  @OneToMany(() => Bid, (bid) => bid.estimator)
   assignedBids: Bid[];
 
   @CreateDateColumn()

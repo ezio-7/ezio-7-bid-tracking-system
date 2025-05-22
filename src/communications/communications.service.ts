@@ -1,4 +1,6 @@
-// src/communications/communications.service.ts
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
@@ -20,44 +22,57 @@ export class CommunicationsService {
 
   async create(createCommunicationDto: CreateCommunicationDto) {
     const communication = new Communication();
-    
+
     communication.subject = createCommunicationDto.subject;
     communication.content = createCommunicationDto.content;
     communication.communicationType = createCommunicationDto.communicationType;
     communication.emailId = createCommunicationDto.emailId || '';
-    
+
     if (createCommunicationDto.contractorId) {
-      communication.contractor = await this.contractorsService.findOne(createCommunicationDto.contractorId);
+      communication.contractor = await this.contractorsService.findOne(
+        createCommunicationDto.contractorId,
+      );
     }
-    
+
     if (createCommunicationDto.projectId) {
-      communication.project = await this.projectsService.findOne(createCommunicationDto.projectId);
+      communication.project = await this.projectsService.findOne(
+        createCommunicationDto.projectId,
+      );
     }
-    
+
     if (createCommunicationDto.bidId) {
-      communication.bid = await this.bidsService.findOne(createCommunicationDto.bidId);
+      communication.bid = await this.bidsService.findOne(
+        createCommunicationDto.bidId,
+      );
     }
-    
+
     return this.communicationsRepository.save(communication);
   }
 
   findAll(query) {
-    const queryBuilder = this.communicationsRepository.createQueryBuilder('communication')
+    const queryBuilder = this.communicationsRepository
+      .createQueryBuilder('communication')
       .leftJoinAndSelect('communication.contractor', 'contractor')
       .leftJoinAndSelect('communication.project', 'project')
       .leftJoinAndSelect('communication.bid', 'bid');
-    
+
     if (query.communicationType) {
-      queryBuilder.andWhere('communication.communicationType = :communicationType', { communicationType: query.communicationType });
+      queryBuilder.andWhere(
+        'communication.communicationType = :communicationType',
+        { communicationType: query.communicationType },
+      );
     }
-    
+
     if (query.startDate && query.endDate) {
-      queryBuilder.andWhere('communication.createdAt BETWEEN :startDate AND :endDate', {
-        startDate: new Date(query.startDate),
-        endDate: new Date(query.endDate),
-      });
+      queryBuilder.andWhere(
+        'communication.createdAt BETWEEN :startDate AND :endDate',
+        {
+          startDate: new Date(query.startDate),
+          endDate: new Date(query.endDate),
+        },
+      );
     }
-    
+
     return queryBuilder.orderBy('communication.createdAt', 'DESC').getMany();
   }
 
@@ -66,11 +81,11 @@ export class CommunicationsService {
       where: { id },
       relations: ['contractor', 'project', 'bid'],
     });
-    
+
     if (!communication) {
       throw new NotFoundException(`Communication with ID ${id} not found`);
     }
-    
+
     return communication;
   }
 

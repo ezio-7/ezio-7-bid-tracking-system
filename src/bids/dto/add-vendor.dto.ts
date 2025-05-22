@@ -1,4 +1,3 @@
-// src/bids/dto/add-vendor.dto.ts
 import { IsNotEmpty, IsUUID, IsOptional, IsString } from 'class-validator';
 
 export class AddVendorDto {

@@ -1,5 +1,12 @@
-// src/vendors/dto/create-vendor.dto.ts
-import { IsNotEmpty, IsOptional, IsEmail, Matches, IsBoolean, IsString } from 'class-validator';
+/* eslint-disable no-useless-escape */
+import {
+  IsNotEmpty,
+  IsOptional,
+  IsEmail,
+  Matches,
+  IsBoolean,
+  IsString,
+} from 'class-validator';
 
 export class CreateVendorDto {
   @IsNotEmpty()
@@ -16,9 +23,8 @@ export class CreateVendorDto {
 
   @IsOptional()
   @IsString()
-  // Use a simple regex pattern instead of IsPhoneNumber
   @Matches(/^[0-9\-\+$$$$\s]+$/, {
-    message: 'Phone must be a valid phone number format'
+    message: 'Phone must be a valid phone number format',
   })
   phone?: string;
 

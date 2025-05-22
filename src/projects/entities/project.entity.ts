@@ -1,5 +1,11 @@
-// src/projects/entities/project.entity.ts
-import { Entity, Column, PrimaryGeneratedColumn, OneToMany, CreateDateColumn, UpdateDateColumn } from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  OneToMany,
+  CreateDateColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 import { Bid } from '../../bids/entities/bid.entity';
 
 @Entity()
@@ -28,7 +34,7 @@ export class Project {
   @Column({ nullable: true })
   endDate: Date;
 
-  @OneToMany(() => Bid, bid => bid.project)
+  @OneToMany(() => Bid, (bid) => bid.project)
   bids: Bid[];
 
   @CreateDateColumn()

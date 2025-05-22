@@ -1,5 +1,11 @@
-// src/contractors/entities/contractor.entity.ts
-import { Entity, Column, PrimaryGeneratedColumn, OneToMany, ManyToMany, CreateDateColumn, UpdateDateColumn } from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  OneToMany,
+  CreateDateColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 import { Bid } from '../../bids/entities/bid.entity';
 import { Communication } from '../../communications/entities/communication.entity';
 
@@ -29,10 +35,10 @@ export class Contractor {
   @Column({ default: true })
   isActive: boolean;
 
-  @OneToMany(() => Bid, bid => bid.contractor)
+  @OneToMany(() => Bid, (bid) => bid.contractor)
   bids: Bid[];
 
-  @OneToMany(() => Communication, communication => communication.contractor)
+  @OneToMany(() => Communication, (communication) => communication.contractor)
   communications: Communication[];
 
   @CreateDateColumn()

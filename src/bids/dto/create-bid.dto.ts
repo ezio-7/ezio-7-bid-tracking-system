@@ -1,5 +1,12 @@
-// src/bids/dto/create-bid.dto.ts
-import { IsNotEmpty, IsOptional, IsNumber, IsUUID, IsDateString, IsObject, IsString } from 'class-validator';
+import {
+  IsNotEmpty,
+  IsOptional,
+  IsNumber,
+  IsUUID,
+  IsDateString,
+  IsObject,
+  IsString,
+} from 'class-validator';
 
 export class CreateBidDto {
   @IsNotEmpty()

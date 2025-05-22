@@ -1,4 +1,5 @@
-// src/estimators/estimators.service.ts
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
@@ -19,21 +20,28 @@ export class EstimatorsService {
   }
 
   findAll(query) {
-    const queryBuilder = this.estimatorsRepository.createQueryBuilder('estimator');
-    
+    const queryBuilder =
+      this.estimatorsRepository.createQueryBuilder('estimator');
+
     if (query.isActive !== undefined) {
-      queryBuilder.andWhere('estimator.isActive = :isActive', { isActive: query.isActive === 'true' });
+      queryBuilder.andWhere('estimator.isActive = :isActive', {
+        isActive: query.isActive === 'true',
+      });
     }
-    
+
     if (query.specialization) {
-      queryBuilder.andWhere('estimator.specialization = :specialization', { specialization: query.specialization });
+      queryBuilder.andWhere('estimator.specialization = :specialization', {
+        specialization: query.specialization,
+      });
     }
-    
+
     return queryBuilder.getMany();
   }
 
   async findOne(id: string) {
-    const estimator = await this.estimatorsRepository.findOne({ where: { id } });
+    const estimator = await this.estimatorsRepository.findOne({
+      where: { id },
+    });
     if (!estimator) {
       throw new NotFoundException(`Estimator with ID ${id} not found`);
     }
@@ -54,13 +62,17 @@ export class EstimatorsService {
   async findAssignedBids(id: string) {
     const estimator = await this.estimatorsRepository.findOne({
       where: { id },
-      relations: ['assignedBids', 'assignedBids.project', 'assignedBids.contractor'],
+      relations: [
+        'assignedBids',
+        'assignedBids.project',
+        'assignedBids.contractor',
+      ],
     });
-    
+
     if (!estimator) {
       throw new NotFoundException(`Estimator with ID ${id} not found`);
     }
-    
+
     return estimator.assignedBids;
   }
 }

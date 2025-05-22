@@ -1,4 +1,3 @@
-// src/communications/dto/create-communication.dto.ts
 import { IsNotEmpty, IsOptional, IsUUID, IsString } from 'class-validator';
 
 export class CreateCommunicationDto {

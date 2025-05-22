@@ -1,4 +1,3 @@
-// src/communications/communications.module.ts
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Communication } from './entities/communication.entity';

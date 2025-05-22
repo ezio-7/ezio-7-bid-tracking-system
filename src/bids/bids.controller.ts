@@ -1,5 +1,13 @@
-// src/bids/bids.controller.ts
-import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  Query,
+} from '@nestjs/common';
 import { BidsService } from './bids.service';
 import { CreateBidDto } from './dto/create-bid.dto';
 import { UpdateBidDto } from './dto/update-bid.dto';
@@ -36,17 +44,27 @@ export class BidsController {
   }
 
   @Post(':id/assign-estimator')
-  assignEstimator(@Param('id') id: string, @Body() assignEstimatorDto: AssignEstimatorDto) {
+  assignEstimator(
+    @Param('id') id: string,
+    @Body() assignEstimatorDto: AssignEstimatorDto,
+  ) {
     return this.bidsService.assignEstimator(id, assignEstimatorDto.estimatorId);
   }
 
   @Post(':id/add-vendor')
   addVendor(@Param('id') id: string, @Body() addVendorDto: AddVendorDto) {
-    return this.bidsService.addVendor(id, addVendorDto.vendorId, addVendorDto.role);
+    return this.bidsService.addVendor(
+      id,
+      addVendorDto.vendorId,
+      addVendorDto.role,
+    );
   }
 
   @Delete(':bidId/vendors/:vendorId')
-  removeVendor(@Param('bidId') bidId: string, @Param('vendorId') vendorId: string) {
+  removeVendor(
+    @Param('bidId') bidId: string,
+    @Param('vendorId') vendorId: string,
+  ) {
     return this.bidsService.removeVendor(bidId, vendorId);
   }
 

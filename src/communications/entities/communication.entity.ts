@@ -1,5 +1,10 @@
-// src/communications/entities/communication.entity.ts
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, CreateDateColumn } from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  ManyToOne,
+  CreateDateColumn,
+} from 'typeorm';
 import { Contractor } from '../../contractors/entities/contractor.entity';
 import { Project } from '../../projects/entities/project.entity';
 import { Bid } from '../../bids/entities/bid.entity';
@@ -16,12 +21,12 @@ export class Communication {
   content: string;
 
   @Column()
-  communicationType: string; // email, phone, meeting, etc.
+  communicationType: string;
 
   @Column({ nullable: true })
-  emailId: string; // Reference to the original email if applicable
+  emailId: string;
 
-  @ManyToOne(() => Contractor, contractor => contractor.communications)
+  @ManyToOne(() => Contractor, (contractor) => contractor.communications)
   contractor: Contractor;
 
   @ManyToOne(() => Project, { nullable: true })

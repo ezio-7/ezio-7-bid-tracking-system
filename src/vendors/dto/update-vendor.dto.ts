@@ -1,4 +1,3 @@
-// src/vendors/dto/update-vendor.dto.ts
 import { PartialType } from '@nestjs/mapped-types';
 import { CreateVendorDto } from './create-vendor.dto';
 

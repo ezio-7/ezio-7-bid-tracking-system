@@ -1,4 +1,5 @@
-// src/projects/projects.service.ts
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
@@ -20,11 +21,13 @@ export class ProjectsService {
 
   findAll(query) {
     const queryBuilder = this.projectsRepository.createQueryBuilder('project');
-    
+
     if (query.status) {
-      queryBuilder.andWhere('project.status = :status', { status: query.status });
+      queryBuilder.andWhere('project.status = :status', {
+        status: query.status,
+      });
     }
-    
+
     return queryBuilder.getMany();
   }
 
@@ -52,11 +55,11 @@ export class ProjectsService {
       where: { id },
       relations: ['bids', 'bids.contractor', 'bids.estimator'],
     });
-    
+
     if (!project) {
       throw new NotFoundException(`Project with ID ${id} not found`);
     }
-    
+
     return project.bids;
   }
 }

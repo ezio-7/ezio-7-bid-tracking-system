@@ -1,5 +1,12 @@
-// src/estimators/dto/create-estimator.dto.ts
-import { IsNotEmpty, IsOptional, IsEmail, IsBoolean, IsString, Matches } from 'class-validator';
+/* eslint-disable no-useless-escape */
+import {
+  IsNotEmpty,
+  IsOptional,
+  IsEmail,
+  IsBoolean,
+  IsString,
+  Matches,
+} from 'class-validator';
 
 export class CreateEstimatorDto {
   @IsNotEmpty()
@@ -12,9 +19,8 @@ export class CreateEstimatorDto {
 
   @IsOptional()
   @IsString()
-  // Use a simple regex pattern instead of IsPhoneNumber
   @Matches(/^[0-9\-\+$$$$\s]+$/, {
-    message: 'Phone must be a valid phone number format'
+    message: 'Phone must be a valid phone number format',
   })
   phone?: string;
 

@@ -1,5 +1,13 @@
-// src/estimators/estimators.controller.ts
-import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  Query,
+} from '@nestjs/common';
 import { EstimatorsService } from './estimators.service';
 import { CreateEstimatorDto } from './dto/create-estimator.dto';
 import { UpdateEstimatorDto } from './dto/update-estimator.dto';
@@ -24,7 +32,10 @@ export class EstimatorsController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateEstimatorDto: UpdateEstimatorDto) {
+  update(
+    @Param('id') id: string,
+    @Body() updateEstimatorDto: UpdateEstimatorDto,
+  ) {
     return this.estimatorsService.update(id, updateEstimatorDto);
   }
 

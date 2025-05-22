@@ -1,5 +1,13 @@
-// src/bids/entities/bid.entity.ts
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, ManyToMany, JoinTable, CreateDateColumn, UpdateDateColumn } from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  ManyToOne,
+  ManyToMany,
+  JoinTable,
+  CreateDateColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 import { Project } from '../../projects/entities/project.entity';
 import { Contractor } from '../../contractors/entities/contractor.entity';
 import { Vendor } from '../../vendors/entities/vendor.entity';
@@ -19,16 +27,18 @@ export class Bid {
   @Column({ nullable: true })
   submissionDate: Date;
 
-  @ManyToOne(() => Project, project => project.bids)
+  @ManyToOne(() => Project, (project) => project.bids)
   project: Project;
 
-  @ManyToOne(() => Contractor, contractor => contractor.bids)
+  @ManyToOne(() => Contractor, (contractor) => contractor.bids)
   contractor: Contractor;
 
-  @ManyToOne(() => Estimator, estimator => estimator.assignedBids, { nullable: true })
+  @ManyToOne(() => Estimator, (estimator) => estimator.assignedBids, {
+    nullable: true,
+  })
   estimator: Estimator;
 
-  @ManyToMany(() => Vendor, vendor => vendor.bids)
+  @ManyToMany(() => Vendor, (vendor) => vendor.bids)
   @JoinTable()
   vendors: Vendor[];
 
