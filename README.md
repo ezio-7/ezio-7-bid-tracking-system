@@ -38,7 +38,7 @@ cd bid-tracking-system
 npm install
 ```
 
-### 3 .Configure environment variables
+### 3. Configure environment variables
 
 Create a `.env` file in the root directory with the following content:
 
@@ -51,7 +51,7 @@ DATABASE_NAME=bidtracking
 PORT=3000
 ```
 
-### 4 .Create a PostgreSQL database
+### 4. Create a PostgreSQL database
 
 Create a postgres db with the db name set in env file
 
@@ -65,7 +65,7 @@ npm run start:dev
 
 ## API Endpoints
 
-### Projects
+### 1. Projects
 
 - `GET /api/projects` - Get all projects
 - `GET /api/projects/:id` - Get a specific project
@@ -74,7 +74,7 @@ npm run start:dev
 - `DELETE /api/projects/:id` - Delete a project
 - `GET /api/projects/:id/bids` - Get all bids for a project
 
-### Contractors
+### 2. Contractors
 
 - `GET /api/contractors` - Get all contractors
 - `GET /api/contractors/:id` - Get a specific contractor
@@ -84,7 +84,7 @@ npm run start:dev
 - `GET /api/contractors/:id/bids` - Get all bids from a contractor
 - `GET /api/contractors/:id/communications` - Get all communications with a contractor
 
-### Vendors
+### 3. Vendors
 
 - `GET /api/vendors` - Get all vendors
 - `GET /api/vendors/:id` - Get a specific vendor
@@ -93,7 +93,7 @@ npm run start:dev
 - `DELETE /api/vendors/:id` - Delete a vendor
 - `GET /api/vendors/:id/bids` - Get all bids associated with a vendor
 
-### Bids
+### 4. Bids
 
 - `GET /api/bids` - Get all bids
 - `GET /api/bids/:id` - Get a specific bid
@@ -105,7 +105,7 @@ npm run start:dev
 - `DELETE /api/bids/:bidId/vendors/:vendorId` - Remove a vendor from a bid
 - `GET /api/bids/compare/project/:projectId` - Compare all bids for a project
 
-### Estimators
+### 5. Estimators
 
 - `GET /api/estimators` - Get all estimators
 - `GET /api/estimators/:id` - Get a specific estimator
@@ -114,7 +114,7 @@ npm run start:dev
 - `DELETE /api/estimators/:id` - Delete an estimator
 - `GET /api/estimators/:id/assigned-bids` - Get all bids assigned to an estimator
 
-### Communications
+### 6. Communications
 
 - `GET /api/communications` - Get all communications
 - `GET /api/communications/:id` - Get a specific communication
