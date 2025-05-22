@@ -11,6 +11,10 @@ A Nest.js application for tracking multiple contractors and vendors bidding on p
 - Estimator Assignment: Assign estimators to evaluate bids
 - Communication Tracking: Track all communications with contractors
 
+## Loom Video link
+
+[Loom](loom.com/share/3bd047e7a9944ba5bf4d2b75f3c0d8d8)
+
 ## Tech Stack
 
 - **Backend:** Nest.js + TypeScript
